@@ -1,0 +1,12 @@
+.question {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  margin: 10px 0;
+}
+
+.optionLabel {
+  margin-left: 8px;
+}
