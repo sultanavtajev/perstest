@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 
 export default function Component() {
   return (
-    <div className="flex min-h-[100dvh] items-center justify-center bg-gray-100 px-4 dark:bg-gray-950">
       <div className="mx-auto w-full max-w-md space-y-6">
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold">Logg inn</h1>
@@ -60,6 +59,5 @@ export default function Component() {
           </Link>
         </div>
       </div>
-    </div>
   );
 }

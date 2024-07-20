@@ -6,10 +6,6 @@ import { Button } from "@/components/ui/button";
 
 export default function Component() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        
-      </header>
       <main className="flex-1">
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
@@ -36,7 +32,7 @@ export default function Component() {
                 </div>
               </div>
               <img
-                src="/placeholder.svg"
+                src="/img1.jpg"
                 width="550"
                 height="550"
                 alt="Hero"
@@ -49,9 +45,6 @@ export default function Component() {
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
-                  Personlighetstest
-                </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                   Avdekk dine unike personlighetstrekk
                 </h2>
@@ -65,7 +58,7 @@ export default function Component() {
             </div>
             <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
               <img
-                src="/placeholder.svg"
+                src="/img2.jpg"
                 width="550"
                 height="310"
                 alt="Image"
@@ -134,7 +127,6 @@ export default function Component() {
           </div>
         </section>
       </main>
-    </div>
   );
 }
 

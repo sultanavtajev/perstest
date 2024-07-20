@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 
 export default function Glemtpass() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 py-12 px-4 dark:bg-gray-950">
       <div className="mx-auto w-full max-w-md space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-50">
@@ -44,6 +43,5 @@ export default function Glemtpass() {
           </Link>
         </div>
       </div>
-    </div>
   );
 }

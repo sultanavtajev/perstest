@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MDXRemote } from "next-mdx-remote";
+import styles from "../app/styles/Results.module.css";
 
 const Results = ({ results }) => {
   const [content, setContent] = useState(null);
@@ -28,13 +29,14 @@ const Results = ({ results }) => {
   console.log("Results content:", content); // Debugging linje
 
   return (
-    <div>
-      <h2>Dine MBTI-resultater</h2>
-      {content ? (
-        <MDXRemote {...content} />
-      ) : (
-        <p>Laster personlighetstypebeskrivelse...</p>
-      )}
+    <div className={styles.container}>
+      <div className={styles.content}>
+        {content ? (
+          <MDXRemote {...content} />
+        ) : (
+          <p>Laster personlighetstypebeskrivelse...</p>
+        )}
+      </div>
     </div>
   );
 };

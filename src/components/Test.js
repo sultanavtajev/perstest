@@ -1,82 +1,61 @@
 "use client";
-import React, { useState } from "react";
-import Question from "./Question";
-import Results from "./Results";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Question from "./Question";
+import Results from "./Results";
 import questions from "./questions";
 
 const scoring = [
-  { A: "E", B: "I" }, // 1
-  { A: "S", B: "N" }, // 2
-  { A: "S", B: "N" }, // 3
-  { A: "T", B: "F" }, // 4
-  { A: "T", B: "F" }, // 5
-  { A: "J", B: "P" }, // 6
-  { A: "J", B: "P" }, // 7
-  { A: "E", B: "I" }, // 8
-  { A: "S", B: "N" }, // 9
-  { A: "S", B: "N" }, // 10
-  { A: "T", B: "F" }, // 11
-  { A: "T", B: "F" }, // 12
-  { A: "J", B: "P" }, // 13
-  { A: "J", B: "P" }, // 14
-  { A: "E", B: "I" }, // 15
-  { A: "S", B: "N" }, // 16
-  { A: "S", B: "N" }, // 17
-  { A: "T", B: "F" }, // 18
-  { A: "T", B: "F" }, // 19
-  { A: "J", B: "P" }, // 20
-  { A: "J", B: "P" }, // 21
-  { A: "E", B: "I" }, // 22
-  { A: "S", B: "N" }, // 23
-  { A: "S", B: "N" }, // 24
-  { A: "T", B: "F" }, // 25
-  { A: "T", B: "F" }, // 26
-  { A: "J", B: "P" }, // 27
-  { A: "J", B: "P" }, // 28
-  { A: "E", B: "I" }, // 29
-  { A: "S", B: "N" }, // 30
-  { A: "S", B: "N" }, // 31
-  { A: "T", B: "F" }, // 32
-  { A: "T", B: "F" }, // 33
-  { A: "J", B: "P" }, // 34
-  { A: "J", B: "P" }, // 35
-  { A: "E", B: "I" }, // 36
-  { A: "S", B: "N" }, // 37
-  { A: "S", B: "N" }, // 38
-  { A: "T", B: "F" }, // 39
-  { A: "T", B: "F" }, // 40
-  { A: "J", B: "P" }, // 41
-  { A: "J", B: "P" }, // 42
-  { A: "E", B: "I" }, // 43
-  { A: "S", B: "N" }, // 44
-  { A: "S", B: "N" }, // 45
-  { A: "T", B: "F" }, // 46
-  { A: "T", B: "F" }, // 47
-  { A: "J", B: "P" }, // 48
-  { A: "J", B: "P" }, // 49
-  { A: "E", B: "I" }, // 50
-  { A: "S", B: "N" }, // 51
-  { A: "S", B: "N" }, // 52
-  { A: "T", B: "F" }, // 53
-  { A: "T", B: "F" }, // 54
-  { A: "J", B: "P" }, // 55
-  { A: "J", B: "P" }, // 56
-  { A: "E", B: "I" }, // 57
-  { A: "S", B: "N" }, // 58
-  { A: "S", B: "N" }, // 59
-  { A: "T", B: "F" }, // 60
-  { A: "T", B: "F" }, // 61
-  { A: "J", B: "P" }, // 62
-  { A: "J", B: "P" }, // 63
-  { A: "E", B: "I" }, // 64
-  { A: "S", B: "N" }, // 65
-  { A: "S", B: "N" }, // 66
-  { A: "T", B: "F" }, // 67
-  { A: "T", B: "F" }, // 68
-  { A: "J", B: "P" }, // 69
-  { A: "J", B: "P" }, // 70
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
+  { A: "E", B: "I" },
+  { A: "S", B: "N" },
+  { A: "S", B: "N" },
+  { A: "T", B: "F" },
+  { A: "T", B: "F" },
+  { A: "J", B: "P" },
+  { A: "J", B: "P" },
 ];
 
 const Test = () => {
@@ -197,7 +176,6 @@ const Test = () => {
     setResults(result);
   };
 
-
   const handlePrev = () => {
     if (currentQuestion > 0) {
       setCurrentQuestion(currentQuestion - 1);
@@ -205,11 +183,11 @@ const Test = () => {
   };
 
   return (
-    <div className="container mx-auto">
+    <div className="flex flex-col items-center justify-center min-h-screenpx-4 md:px-6 pt-8">
       {showResults ? (
         <Results results={results} />
       ) : (
-        <div className="p-4">
+        <div className="p-4 w-full max-w-xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentQuestion}
@@ -217,30 +195,28 @@ const Test = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.3 }}
-              className="bg-white shadow rounded-lg p-6"
+              className="bg-white"
             >
               <Question
                 question={questions[currentQuestion].question}
                 options={questions[currentQuestion].options}
                 handleAnswer={handleAnswer}
               />
-              <div className="flex justify-between mt-4">
-                {currentQuestion > 0 && (
-                  <Button onClick={handlePrev} variant="outline">
-                    Tilbake
-                  </Button>
-                )}
-                <Button
-                  onClick={() => handleAnswer(answers[currentQuestion])}
-                  variant="primary"
-                >
-                  {currentQuestion < questions.length - 1
-                    ? "Neste"
-                    : "Send inn"}
-                </Button>
-              </div>
             </motion.div>
           </AnimatePresence>
+          <div className="flex justify-between mt-4 w-full">
+            {currentQuestion > 0 && (
+              <Button onClick={handlePrev} variant="primary">
+                Tilbake
+              </Button>
+            )}
+            <Button
+              onClick={() => handleAnswer(answers[currentQuestion])}
+              variant="primary"
+            >
+              {currentQuestion < questions.length - 1 ? "Neste" : "Send inn"}
+            </Button>
+          </div>
         </div>
       )}
     </div>
